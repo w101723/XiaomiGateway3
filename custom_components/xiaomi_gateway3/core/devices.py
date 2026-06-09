@@ -5283,10 +5283,10 @@ DEVICES += [{
 }, {
     21145: ["PTX", "AK4 Pro Mesh2.0", "090615.switch.akpro4"],
     "spec": [
-        BaseConv("сhannel_1", "switch", mi="2.p.1"),
-        BaseConv("сhannel_2", "switch", mi="3.p.1"),
-        BaseConv("сhannel_3", "switch", mi="4.p.1"),
-        BaseConv("сhannel_4", "switch", mi="5.p.1"),
+        BaseConv("channel_1", "switch", mi="2.p.1"),
+        BaseConv("channel_2", "switch", mi="3.p.1"),
+        BaseConv("channel_3", "switch", mi="4.p.1"),
+        BaseConv("channel_4", "switch", mi="5.p.1"),
         MapConv("mode_1", "select", mi="2.p.2", map={0: "Wired And Wireless", 1: "Wireless"}, entity=ENTITY_CONFIG),
         MapConv("mode_2", "select", mi="3.p.2", map={0: "Wired And Wireless", 1: "Wireless"}, entity=ENTITY_CONFIG),
         MapConv("mode_3", "select", mi="4.p.2", map={0: "Wired And Wireless", 1: "Wireless"}, entity=ENTITY_CONFIG),
