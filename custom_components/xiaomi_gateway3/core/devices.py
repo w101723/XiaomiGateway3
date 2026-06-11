@@ -1710,7 +1710,7 @@ DEVICES += [{
     # https://home.miot-spec.com/spec?type=urn:miot-spec-v2:device:temperature-humidity-sensor:0000A00A:xiaomi-mini:1:0000D063
     21941: ["Xiaomi", "TH Sensor 3 Mini", "MJWSD06MMC", "xiaomi.sensor_ht.mini"],
     "spec": [
-        # MiBeacon2 spec 
+        # MiBeacon2 spec
         BLEFloatConv("temperature", "sensor", mi=19457, round=1),
         BLEByteConv("humidity", "sensor", mi=19458),
         BLEByteConv("battery", "sensor", mi=18435, entity=ENTITY_LAZY),
@@ -1718,7 +1718,7 @@ DEVICES += [{
         BaseConv("temperature", "sensor", mi="2.p.1001"),
         BaseConv("humidity", "sensor", mi="2.p.1002"),
         BaseConv("battery", "sensor", mi="3.p.1003"),
-    ],       
+    ],
 }, {
     10987: ["Linptech", "Motion Sensor 2", "HS1BB", "linp.motion.hs1bb1"],
     "spec": [
@@ -1842,7 +1842,7 @@ DEVICES += [{
         # The value of this sensor is a number: positive for right, negative for left rotation.
         BaseConv("knob_rotation_amplitude", "sensor", mi="5.e.1036.p.2"),
         # --- Combined operation events ---
-        # Both "Down Button Press Right/Left Rotation" and "Press To Turn Right/Left" correspond to eiid: 1028        
+        # Both "Down Button Press Right/Left Rotation" and "Press To Turn Right/Left" correspond to eiid: 1028
         ConstConv("action", mi="5.e.1028", value="button_3_press_rotate"),
         # --- Battery level support ---
         BaseConv("battery", "sensor", mi="1.p.1"),
@@ -2184,7 +2184,7 @@ DEVICES += [{
     "spec": [
         BaseConv("action", "sensor"),
         MapConv("action", mi="3.e.1012.p.1", map={1: BUTTON_1_SINGLE, 2: BUTTON_2_SINGLE, 3: BUTTON_3_SINGLE, 4: BUTTON_4_SINGLE}),
-        MapConv("action", mi="3.e.1013.p.1", map={1: BUTTON_1_DOUBLE, 2: BUTTON_2_DOUBLE, 3: BUTTON_3_DOUBLE, 4: BUTTON_4_DOUBLE}),       
+        MapConv("action", mi="3.e.1013.p.1", map={1: BUTTON_1_DOUBLE, 2: BUTTON_2_DOUBLE, 3: BUTTON_3_DOUBLE, 4: BUTTON_4_DOUBLE}),
         MapConv("action", mi="3.e.1014.p.1", map={1: BUTTON_1_HOLD, 2: BUTTON_2_HOLD, 3: BUTTON_3_HOLD, 4: BUTTON_4_HOLD}),
         # Humidity (uint8)
         BaseConv("humidity", "sensor", mi="8.p.1018"),
@@ -2193,7 +2193,7 @@ DEVICES += [{
         # Battery level
         BaseConv("battery", "sensor", mi="6.p.1003"),
     ],
-    # "ttl": "7d"     
+    # "ttl": "7d"
 }, {
     # https://github.com/AlexxIT/XiaomiGateway3/pull/1294
     14945: ["Linptech", "Wireless Button KS1", "linp.remote.ks1"],
@@ -2262,6 +2262,12 @@ DEVICES += [{
     20962: ["Xiaomi", "8-electrode Body Fat Scale S800", "MJTZC04YM", "xiaomi.scales.ms116"],
     "spec": [
         MapConv("battery_low", "binary_sensor", mi="4.e.1001.p.1", map={0: False, 1: True, 2: True}),
+        # measurement values
+        BaseConv("weight", "sensor", entity={"icon": "mdi:human", "units": "kg"}),
+        BaseConv("heart_rate", "sensor", entity={"icon": "mdi:heart-pulse", "units": "bpm"}),
+        # S800 measurement parser
+        BLEScaleS800("p2", mi="3.e.1022.p.2"),
+        BLEScaleS800("p3", mi="3.e.1022.p.3"),
     ],
 }, {
     # https://home.miot-spec.com/spec/izq.sensor_occupy.ble
@@ -2314,8 +2320,8 @@ DEVICES += [{
         BoolConv("water_leak_top", "binary_sensor", mi="2.p.1123", entity={"class": "moisture"}),
         MapConv("status", "sensor", mi="2.p.1004", map={0: "In Monitoring", 1: "Idle", 2: "Busy", 3: "Delay"}),
         BaseConv("battery", "sensor", mi="3.p.1003"),
-        
-        ### below sensors are not very useful and are disabled by default. 
+
+        ### below sensors are not very useful and are disabled by default.
         MapConv("event_type", "sensor", mi="2.e.1104.p.4", map={0: "Water Immersion Alarm", 1: "Flood Relief", 2: "Water Alarm", 3: "Water Removal"}, entity={"enabled": False}),
         BaseConv("cus_event_1", "sensor", mi="6.e.1022.p.1", entity={"enabled": False}),
         BaseConv("cus_event_2", "sensor", mi="6.e.1022.p.2", entity={"enabled": False}),
@@ -2888,7 +2894,7 @@ DEVICES += [{
         BaseConv("off_led", "button", mi="7.a.7", entity=ENTITY_CONFIG),
         BaseConv("toggle", "button", mi="2.a.1"),
         BaseConv("restore_factory", "button", mi="5.a.3", entity=ENTITY_CONFIG),
-    ],       
+    ],
 }, {
     2093: ["PTX", "Mesh Triple Wall Switch", "PTX-TK3/M", "090615.switch.mesw3"],
     3878: ["PTX", "Mesh Triple Wall Switch", "PTX-SK3M", "090615.switch.mets3"],
@@ -4796,7 +4802,7 @@ DEVICES += [{
         MapConv("power_on_state", "select", mi="2.p.5", map={0: "Off", 1: "On", 2: "Default"}),
         MapConv("backlight_level", "select", mi="17.p.2", map={0: "Level 0", 1: "Level 1", 2: "Level 2"}, entity=ENTITY_CONFIG),
         MapConv("backlight_mode", "select", mi="17.p.3", map={0: "Default", 1: "auto", 2: "Not-disturb"}, entity=ENTITY_CONFIG),
-        BaseConv("action", "sensor"),     
+        BaseConv("action", "sensor"),
         # Button press events
         MapConv("action", mi="6.e.1.p.1", map={1: BUTTON_1_SINGLE, 2: BUTTON_2_SINGLE, 3: BUTTON_3_SINGLE, 4: BUTTON_4_SINGLE}), # Single press
         MapConv("action", mi="6.e.3.p.1", map={1: BUTTON_1_DOUBLE, 2: BUTTON_2_DOUBLE, 3: BUTTON_3_DOUBLE, 4: BUTTON_4_DOUBLE}), # Double press
@@ -4815,14 +4821,14 @@ DEVICES += [{
         # Standby clock display switch (controlled via mode selection)
         MapConv("no_one_screen", "select", mi="17.p.10", map={0: "Off", 1: "Low-energy", 2: "Digit-clock"}, entity=ENTITY_CONFIG),
         # Auto standby time (screen off delay)
-        MathConv("screen_off_delay", "number", mi="17.p.4", min=3, max=180, entity=ENTITY_CONFIG),        
+        MathConv("screen_off_delay", "number", mi="17.p.4", min=3, max=180, entity=ENTITY_CONFIG),
         # Occupancy/Vacancy detection binary sensor
         ConstConv("action", mi="16.e.1", value="someone"), # Someone detected
         ConstConv("action", mi="16.e.2", value="no_one"),  # No one detected
         BaseConv("occupancy", "binary_sensor", entity=ENTITY_LAZY),
         ConstConv("occupancy", mi="16.e.1", value=True),   # Occupied
         ConstConv("occupancy", mi="16.e.2", value=False),  # Vacant
-    ],      
+    ],
 }, {
     # https://home.miot-spec.com/spec?type=urn:miot-spec-v2:device:occupancy-sensor:0000A0BF:090615-xw:1:0000C824
     18736: ["PTX", "Human Body Presence Sensor (Top Mounted)", "PTX-MMW-MIM", "090615.sensor_occupy.xw"],
